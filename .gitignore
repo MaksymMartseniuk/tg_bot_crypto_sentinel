@@ -1,0 +1,19 @@
+.env
+
+venv/
+.venv/
+env/
+# Кеш Python
+__pycache__/
+*.pyc
+
+# Бази даних
+*.db
+*.sqlite3
+
+# Налаштування IDE
+.vscode/
+.idea/
+
+# Логи
+*.log
