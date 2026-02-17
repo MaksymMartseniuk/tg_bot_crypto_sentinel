@@ -1,0 +1,8 @@
+aiogram
+aiohttp
+pydantic-settings
+sqlalchemy
+alembic
+asyncpg
+apscheduler
+redis
