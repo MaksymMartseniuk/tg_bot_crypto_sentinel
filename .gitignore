@@ -6,13 +6,14 @@ env/
 # Кеш Python
 __pycache__/
 *.pyc
+.pytest_cache
 
 # Бази даних
 *.db
 *.sqlite3
 
 # Налаштування IDE
-.vscode/
+.vscode
 .idea/
 
 # Логи

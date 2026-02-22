@@ -6,3 +6,6 @@ alembic
 asyncpg
 apscheduler
 redis
+pytest
+pytest-asyncio
+pytest-mock
