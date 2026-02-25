@@ -1,6 +1,5 @@
 import pytest
 from unittest.mock import AsyncMock,patch
-from aiogram.types import Message
 
 @pytest.mark.asyncio
 async def test_cmd_start():
