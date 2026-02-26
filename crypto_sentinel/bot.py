@@ -5,6 +5,7 @@ from config_reader import config
 from app.database.database import init_db
 from app.handlers.user import user_router
 from app.handlers.prices import price_router
+from app.handlers.alerts import alerts_router
 
 
 async def main():
@@ -14,6 +15,7 @@ async def main():
     dp=Dispatcher()
     dp.include_router(user_router)
     dp.include_router(price_router)
+    dp.include_router(alerts_router)
     await dp.start_polling(bot)
 
 if __name__=="__main__":
