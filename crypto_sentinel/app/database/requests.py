@@ -2,7 +2,7 @@ from app.database.database import async_session
 from app.database.models import User, Alerts
 from sqlalchemy import select
 
-async def set_user(tg_id: int, username: str | None):
+async def set_user(tg_id: int, username: str | None): #TODO: add in model first_name and last_name if user_name is None
     async with async_session() as session:
         user=await session.scalar(select(User).where(User.tg_id==tg_id))
         
