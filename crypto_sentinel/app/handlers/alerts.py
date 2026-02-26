@@ -7,8 +7,7 @@ from aiogram.enums import ParseMode
 from app.keyboards.builders import main_menu
 from app.keyboards.price_kb import get_popular_crypto_kb
 from app.services.binance_api import get_crypto_price
-
-
+from app.database.requests import add_alert
 alerts_router=Router()
 
 class CreateAlert(StatesGroup):
@@ -47,13 +46,22 @@ async def process_alert_symbol(message: Message, state: FSMContext):
 @alerts_router.message(CreateAlert.waiting_for_price)
 async def process_alert_price(message: Message, state: FSMContext):
     try:
-        price = float(message.text.strip())
+        target_price = float(message.text.strip().replace(',', '.'))
         data = await state.get_data()
         symbol = data.get("symbol")
-        #TODO: Save the alert to the database here
+        current_price = data.get("current_price")
+        direction = "UP" if target_price > current_price else "DOWN"
+        await add_alert(
+            tg_id=message.from_user.id,
+            symbol=symbol,
+            target_price=target_price,
+            direction=direction
+        )
+        emoji = "📈" if direction == "UP" else "📉"
         await message.answer(
-            f"✅ Alert set for <b>{symbol}</b> at ${price:.2f}.\n"
-            "You will be notified when the price reaches this level.",
+            f"✅ Alert set: <b>{symbol}</b> {emoji}\n"
+            f"Target: <code>${target_price:,.2f}</code>\n"
+            f"(Trigger when price goes {'above' if direction == 'UP' else 'below'})",
             reply_markup=main_menu(),
             parse_mode=ParseMode.HTML
         )
