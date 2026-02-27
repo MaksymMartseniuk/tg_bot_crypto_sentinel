@@ -24,7 +24,7 @@ scheduler = TaskiqScheduler(
 )
 
 
-@broker.task(task_name="check_crypto_alerts", schedule=[{"seconds": 30}])
+@broker.task(task_name="check_crypto_alerts", schedule=[{'cron': '*/1 * * * *'}])
 async def check_crypto_alerts(bot: Bot = TaskiqDepends(),session = TaskiqDepends(get_session)) -> None:
     alerts = await get_active_alerts(session)
     if not alerts:
@@ -34,6 +34,7 @@ async def check_crypto_alerts(bot: Bot = TaskiqDepends(),session = TaskiqDepends
         current_price = await get_crypto_price(alert.symbol)
         if current_price is None:
             continue
+
         triggered = False
         if alert.direction == "UP" and current_price >= alert.target_price:
                 triggered = True
