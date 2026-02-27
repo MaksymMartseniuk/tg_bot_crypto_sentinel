@@ -20,6 +20,38 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+
+  bot:
+    build: .
+    container_name: crypto_sentinel_bot
+    restart: always
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+    command: python bot.py
+  
+  worker:
+    build: .
+    container_name: crypto_sentinel_worker
+    restart: always
+    depends_on:
+      - bot
+    env_file:
+      - .env
+    command: python -m taskiq worker app.broker:broker
+  scheduler:
+    build: .
+    container_name: crypto_sentinel_scheduler
+    restart: always
+    depends_on:
+      - bot
+      - worker
+    env_file:
+      - .env
+    command: python -m taskiq scheduler app.broker:scheduler app.broker
+  
 volumes:
   postgres_data:
   redis_data:
