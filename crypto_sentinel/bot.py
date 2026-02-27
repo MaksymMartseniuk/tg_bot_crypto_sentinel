@@ -7,15 +7,15 @@ from app.handlers.user import user_router
 from app.handlers.prices import price_router
 from app.handlers.alerts import alerts_router
 
+bot=Bot(token=config.bot_token.get_secret_value())
+dp=Dispatcher()
+dp.include_router(user_router)
+dp.include_router(price_router)
+dp.include_router(alerts_router)
 
 async def main():
     logging.basicConfig(level=logging.INFO)
     await init_db()
-    bot=Bot(token=config.bot_token.get_secret_value())
-    dp=Dispatcher()
-    dp.include_router(user_router)
-    dp.include_router(price_router)
-    dp.include_router(alerts_router)
     await dp.start_polling(bot)
 
 if __name__=="__main__":
