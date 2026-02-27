@@ -1,6 +1,8 @@
 from app.database.database import async_session
 from app.database.models import User, Alerts
 from sqlalchemy import select
+from sqlalchemy.orm import joinedload
+from sqlalchemy.ext.asyncio import AsyncSession
 
 async def set_user(tg_id: int, username: str | None): #TODO: add in model first_name and last_name if user_name is None
     async with async_session() as session:
@@ -27,5 +29,10 @@ async def add_alert(tg_id: int, symbol: str, target_price: float, direction: str
 async def get_user_alerts(tg_id: int):
     async with async_session() as session:
         query = select(Alerts).join(User).where(User.tg_id == tg_id)
+        result = await session.execute(query)
+        return result.scalars().all()
+    
+async def get_active_alerts(session: AsyncSession):
+        query = select(Alerts).options(joinedload(Alerts.user)).where(Alerts.is_active == True)
         result = await session.execute(query)
         return result.scalars().all()

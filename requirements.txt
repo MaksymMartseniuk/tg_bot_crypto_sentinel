@@ -9,3 +9,6 @@ redis
 pytest
 pytest-asyncio
 pytest-mock
+taskiq
+taskiq-aiogram
+taskiq_redis
