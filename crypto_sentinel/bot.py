@@ -10,6 +10,12 @@ from app.handlers.user import user_router
 from app.handlers.prices import price_router
 from app.handlers.alerts import alerts_router
 from app.handlers.settings import setting_router
+from aiogram.utils.i18n import I18n
+from app.middleware.i18n import I18nMiddleware
+from app.middleware.database import DbSessionMiddleware
+from app.database.database import async_session
+
+i18n = I18n(path="locales", default_locale="en", domain="messages")
 
 bot=Bot(token=config.bot_token.get_secret_value())
 dp=Dispatcher()
@@ -20,6 +26,8 @@ dp.include_router(alerts_router)
 
 async def main():
     logging.basicConfig(level=logging.INFO)
+    dp.update.outer_middleware(DbSessionMiddleware(session_pool=async_session))
+    dp.update.outer_middleware(I18nMiddleware(i18n=i18n))
     await init_db()
     async with aiohttp.ClientSession() as http_session:
         dp.message.middleware(DbSessionMiddleware(async_session, redis_client, http_session))

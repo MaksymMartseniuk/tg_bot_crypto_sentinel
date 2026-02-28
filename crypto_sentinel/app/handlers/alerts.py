@@ -12,6 +12,9 @@ from app.keyboards.builders import main_menu
 from app.keyboards.price_kb import get_popular_crypto_kb
 from app.services.binance_api import get_crypto_price
 from app.database.requests import add_alert, get_user_alerts
+from aiogram.utils.i18n import gettext as _
+from aiogram.utils.i18n import lazy_gettext as __
+
 alerts_router=Router()
 
 class CreateAlert(StatesGroup):
