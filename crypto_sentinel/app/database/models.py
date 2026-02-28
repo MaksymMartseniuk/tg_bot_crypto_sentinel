@@ -20,7 +20,7 @@ class Alerts(Base):
     __tablename__= "alerts"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    user_id:Mapped[int]= mapped_column(ForeignKey('user_account.id'))
+    user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey('user_account.tg_id', ondelete="CASCADE"))
     symbol: Mapped[str] = mapped_column(String(10), nullable=False, index=True)
     target_price: Mapped[float] = mapped_column(Float, nullable=False)
     direction: Mapped[str] = mapped_column(String(10), nullable=False)

@@ -14,7 +14,7 @@ bot=Bot(token=config.bot_token.get_secret_value())
 dp=Dispatcher()
 dp.include_router(user_router)
 dp.include_router(price_router)
-#dp.include_router(alerts_router)
+dp.include_router(alerts_router)
 #dp.include_router(setting_router)
 
 async def main():

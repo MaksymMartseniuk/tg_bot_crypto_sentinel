@@ -19,7 +19,7 @@ async def set_user(session: AsyncSession, tg_id: int, username: str | None):
 async def add_alert(session: AsyncSession, tg_id: int, symbol: str, target_price: float, direction: str):
         user=await session.scalar(select(User).where(User.tg_id==tg_id))
         if user:
-            alert=Alerts(user_id=user.id,
+            alert=Alerts(user_id=user.tg_id,
                          symbol=symbol.upper(),
                          target_price=target_price,
                          direction=direction)
