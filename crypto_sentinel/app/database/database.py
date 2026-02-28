@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+from sqlalchemy.pool import QueuePool
 from app.database.models import Base
 from config_reader import config
 from typing import AsyncIterable
@@ -9,7 +10,11 @@ _REDIS_HOST=config.redis_host.get_secret_value()
 _REDIS_PORT=config.redis_port.get_secret_value()
 _REDIS_DB=config.redis_db.get_secret_value()
 
-engine=create_async_engine(_DATABASE,echo=True)
+engine=create_async_engine(_DATABASE,
+                           echo=True,
+                           poolclass=QueuePool,
+                           pool_size=10,
+                           max_overflow=20)
 
 async_session = async_sessionmaker(
     bind=engine,
@@ -24,9 +29,15 @@ redis_client=Redis(
     decode_responses=True)
 
 async def init_db():
+    """Initialize the database by creating all tables."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
 async def get_session()->AsyncIterable[AsyncSession]:
     async with async_session() as session:
         yield session
+
+async def dispose_db():
+    """Dispose the database engine and close the Redis client."""
+    await engine.dispose()
+    await redis_client.close()

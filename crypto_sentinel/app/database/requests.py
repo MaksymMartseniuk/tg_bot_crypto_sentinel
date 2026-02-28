@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 from sqlalchemy.ext.asyncio import AsyncSession
 
-async def set_user(tg_id: int, username: str | None): #TODO: add in model first_name and last_name if user_name is None
+async def set_user(tg_id: int, username: str | None):
     async with async_session() as session:
         user=await session.scalar(select(User).where(User.tg_id==tg_id))
         
