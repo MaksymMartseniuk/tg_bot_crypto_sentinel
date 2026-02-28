@@ -11,8 +11,8 @@ from app.handlers.prices import price_router
 from app.handlers.alerts import alerts_router
 from app.handlers.settings import setting_router
 from aiogram.utils.i18n import I18n
-from app.middleware.i18n import I18nMiddleware
-from app.middleware.database import DbSessionMiddleware
+from crypto_sentinel.app.middlewares.i18n import I18nMiddleware
+from app.middlewares.database import DbSessionMiddleware
 from app.database.database import async_session
 
 i18n = I18n(path="locales", default_locale="en", domain="messages")
