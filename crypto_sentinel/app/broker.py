@@ -1,4 +1,5 @@
 import asyncio
+import aiohttp
 import taskiq_aiogram 
 from aiogram import Bot
 from taskiq import TaskiqDepends,TaskiqScheduler
@@ -29,11 +30,11 @@ async def check_crypto_alerts(bot: Bot = TaskiqDepends(),session = TaskiqDepends
     alerts = await get_active_alerts(session)
     if not alerts:
         return
-    
-    for alert in alerts:
-        current_price = await get_crypto_price(alert.symbol)
-        if current_price is None:
-            continue
+    async with aiohttp.ClientSession() as http_session:
+        for alert in alerts:
+            current_price = await get_crypto_price(alert.symbol,http_session=http_session)
+            if current_price is None:
+                continue
 
         triggered = False
         if alert.direction == "UP" and current_price >= alert.target_price:
