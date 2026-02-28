@@ -6,7 +6,8 @@ from config_reader import config
 from app.database.database import async_session, dispose_db, init_db, redis_client
 from app.middlewares.database import DbSessionMiddleware
 
-from aiogram.utils.i18n import I18n
+from app.i18n import i18n
+
 from app.middlewares.i18n import I18nMiddleware
 from app.middlewares.database import DbSessionMiddleware
 from app.database.database import async_session
@@ -16,8 +17,6 @@ from app.handlers.prices import price_router
 from app.handlers.alerts import alerts_router
 from app.handlers.settings import setting_router
 from app.handlers.common import common_router
-
-i18n = I18n(path="locales", default_locale="en", domain="messages")
 
 bot=Bot(token=config.bot_token.get_secret_value())
 dp=Dispatcher()

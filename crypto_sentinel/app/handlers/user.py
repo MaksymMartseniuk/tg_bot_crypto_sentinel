@@ -15,5 +15,5 @@ user_router=Router()
 @user_router.message(CommandStart())
 async def cmd_start(message:Message,session: AsyncSession):
     await set_user(session, message.from_user.id,message.from_user.username)
-    await message.answer("Choose language / Виберіть мову",reply_markup=get_settings_kb("start"))
+    await message.answer("Виберіть мову / Choose language",reply_markup=get_settings_kb("start"))
 

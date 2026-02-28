@@ -2,7 +2,6 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery
 from sqlalchemy.ext.asyncio import AsyncSession
 from aiogram.utils.i18n import gettext as _, I18n
-from app.database.requests import set_user_language
 from app.keyboards.builders import main_menu
 from app.services.language import change_user_language
 

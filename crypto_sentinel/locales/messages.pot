@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-28 12:38+0200\n"
+"POT-Creation-Date: 2026-02-28 18:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,38 +17,109 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/handlers/prices.py:20
+#: app/broker.py:54
+#, python-brace-format
+msgid ""
+"{emoji} <b>Alert Triggered!</b>\n"
+"\n"
+"Asset: <b>{symbol}</b>\n"
+"Target: <code>${target:,.2f}</code>\n"
+"Current: <code>${current:,.2f}</code>"
+msgstr ""
+
+#: app/handlers/alerts.py:32
+msgid "🟢 Active"
+msgstr ""
+
+#: app/handlers/alerts.py:32
+msgid "⚪ Triggered"
+msgstr ""
+
+#: app/handlers/alerts.py:33
+#, python-brace-format
+msgid ""
+"{emoji} <b>{symbol}</b> - Target: <code>${price:,.2f}</code>\n"
+"Status: {status}"
+msgstr ""
+
+#: app/handlers/alerts.py:42
+msgid ""
+"Your Active Alerts:\n"
+"\n"
+msgstr ""
+
+#: app/handlers/alerts.py:46
+msgid "You have no alerts set."
+msgstr ""
+
+#: app/handlers/alerts.py:52
+msgid "Which coin do you want to set an alert for? (e.g., BTC, ETH):"
+msgstr ""
+
+#: app/handlers/alerts.py:61
+msgid "Alert creation cancelled."
+msgstr ""
+
+#: app/handlers/alerts.py:70
+#, python-brace-format
+msgid ""
+"Current price of <b>{symbol}</b> is ${current_price:,.2f}.\n"
+"At what price do you want to set the alert?"
+msgstr ""
+
+#: app/handlers/alerts.py:77
+#, python-brace-format
+msgid "❌ Could not find <b>{symbol}</b>. Please try another symbol:"
+msgstr ""
+
+#: app/handlers/alerts.py:94
+msgid "Above"
+msgstr ""
+
+#: app/handlers/alerts.py:94
+msgid "Below"
+msgstr ""
+
+#: app/handlers/alerts.py:95
+#, python-brace-format
+msgid ""
+"Alert set: <b>{symbol}</b> {emoji}\n"
+"Target: <code>${target_price:,.2f}</code>\n"
+"(Trigger when price goes {direction})"
+msgstr ""
+
+#: app/handlers/alerts.py:110
+msgid "❌ Please enter a valid number (e.g., 55000.50):"
+msgstr ""
+
+#: app/handlers/common.py:17
+msgid "Welcome! How can I help you today?"
+msgstr ""
+
+#: app/handlers/common.py:22
+msgid "Settings updated."
+msgstr ""
+
+#: app/handlers/prices.py:21
 msgid "Which coin do you want to check? Enter symbol (e.g., BTC, ETH):"
 msgstr ""
 
-#: app/handlers/prices.py:26
+#: app/handlers/prices.py:27
 msgid "Action cancelled."
 msgstr ""
 
-#: app/handlers/prices.py:35
+#: app/handlers/prices.py:36
 #, python-brace-format
 msgid "🚀 <b>{symbol}</b> Price: <code>${price}</code>"
 msgstr ""
 
-#: app/handlers/prices.py:44
+#: app/handlers/prices.py:45
 #, python-brace-format
 msgid "❌ Could not find <b>{symbol}</b>. Try again."
 msgstr ""
 
-#: app/handlers/settings.py:12
+#: app/handlers/settings.py:14
 msgid "Select an option to configure:"
-msgstr ""
-
-#: app/handlers/user.py:25
-msgid "Language set to Ukrainian! 🇺🇦"
-msgstr ""
-
-#: app/handlers/user.py:26
-msgid "Language set to English! 🇺🇸"
-msgstr ""
-
-#: app/handlers/user.py:30
-msgid "Welcome ! How can I help you today?"
 msgstr ""
 
 #: app/keyboards/builders.py:7
@@ -77,5 +148,13 @@ msgstr ""
 
 #: app/keyboards/settings_kb.py:10
 msgid "🇺🇸 English"
+msgstr ""
+
+#: app/services/language.py:9
+msgid "Language set to Ukrainian! 🇺🇦"
+msgstr ""
+
+#: app/services/language.py:10
+msgid "Language set to English! 🇺🇸"
 msgstr ""
 
