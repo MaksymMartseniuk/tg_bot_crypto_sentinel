@@ -6,14 +6,16 @@ from config_reader import config
 from app.database.database import async_session, dispose_db, init_db, redis_client
 from app.middlewares.database import DbSessionMiddleware
 
-from app.handlers.user import user_router
-from app.handlers.prices import price_router
-from app.handlers.alerts import alerts_router
-from app.handlers.settings import setting_router
 from aiogram.utils.i18n import I18n
 from app.middlewares.i18n import I18nMiddleware
 from app.middlewares.database import DbSessionMiddleware
 from app.database.database import async_session
+
+from app.handlers.user import user_router
+from app.handlers.prices import price_router
+from app.handlers.alerts import alerts_router
+from app.handlers.settings import setting_router
+from app.handlers.common import common_router
 
 i18n = I18n(path="locales", default_locale="en", domain="messages")
 
@@ -23,6 +25,7 @@ dp.include_router(user_router)
 dp.include_router(price_router)
 dp.include_router(alerts_router)
 dp.include_router(setting_router)
+dp.include_router(common_router)
 
 async def main():
     logging.basicConfig(level=logging.INFO)
