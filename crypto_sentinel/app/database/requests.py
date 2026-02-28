@@ -1,6 +1,6 @@
 from app.database.database import async_session
 from app.database.models import User, Alerts
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.orm import joinedload
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -36,3 +36,15 @@ async def get_active_alerts(session: AsyncSession):
         query = select(Alerts).options(joinedload(Alerts.user)).where(Alerts.is_active == True)
         result = await session.execute(query)
         return result.scalars().all()
+
+async def set_user_language(session, tg_id: int, lang_code: str):
+    await session.execute(
+        update(User)
+        .where(User.tg_id == tg_id)
+        .values(language=lang_code)
+    )
+    await session.commit()
+
+async def get_user(tg_id: int, session: AsyncSession):
+    result = await session.execute(select(User).where(User.tg_id == tg_id))
+    return result.scalar_one_or_none()

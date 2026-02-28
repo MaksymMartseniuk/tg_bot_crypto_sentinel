@@ -1,0 +1,81 @@
+# Translations template for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-02-28 12:38+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/handlers/prices.py:20
+msgid "Which coin do you want to check? Enter symbol (e.g., BTC, ETH):"
+msgstr ""
+
+#: app/handlers/prices.py:26
+msgid "Action cancelled."
+msgstr ""
+
+#: app/handlers/prices.py:35
+#, python-brace-format
+msgid "🚀 <b>{symbol}</b> Price: <code>${price}</code>"
+msgstr ""
+
+#: app/handlers/prices.py:44
+#, python-brace-format
+msgid "❌ Could not find <b>{symbol}</b>. Try again."
+msgstr ""
+
+#: app/handlers/settings.py:12
+msgid "Select an option to configure:"
+msgstr ""
+
+#: app/handlers/user.py:25
+msgid "Language set to Ukrainian! 🇺🇦"
+msgstr ""
+
+#: app/handlers/user.py:26
+msgid "Language set to English! 🇺🇸"
+msgstr ""
+
+#: app/handlers/user.py:30
+msgid "Welcome ! How can I help you today?"
+msgstr ""
+
+#: app/keyboards/builders.py:7
+msgid "🔔 Add Alert"
+msgstr ""
+
+#: app/keyboards/builders.py:8
+msgid "📋 My Alerts"
+msgstr ""
+
+#: app/keyboards/builders.py:9
+msgid "📈 Live Prices"
+msgstr ""
+
+#: app/keyboards/builders.py:10
+msgid "⚙️ Settings"
+msgstr ""
+
+#: app/keyboards/price_kb.py:10
+msgid "❌ Cancel"
+msgstr ""
+
+#: app/keyboards/settings_kb.py:9
+msgid "🇺🇦 Українська"
+msgstr ""
+
+#: app/keyboards/settings_kb.py:10
+msgid "🇺🇸 English"
+msgstr ""
+
