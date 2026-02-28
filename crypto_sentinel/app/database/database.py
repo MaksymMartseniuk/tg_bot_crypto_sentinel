@@ -1,5 +1,4 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-from sqlalchemy.pool import QueuePool
 from app.database.models import Base
 from config_reader import config
 from typing import AsyncIterable
@@ -12,7 +11,6 @@ _REDIS_DB=config.redis_db.get_secret_value()
 
 engine=create_async_engine(_DATABASE,
                            echo=True,
-                           poolclass=QueuePool,
                            pool_size=10,
                            max_overflow=20)
 
