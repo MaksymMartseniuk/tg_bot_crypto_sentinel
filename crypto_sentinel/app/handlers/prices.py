@@ -1,3 +1,4 @@
+import aiohttp
 from aiogram import F,Router
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
@@ -24,9 +25,9 @@ async def cancel_price_check(message:Message,state:FSMContext):
     await message.answer("Action cancelled.", reply_markup=main_menu())
 
 @price_router.message(PriceCheck.waiting_for_symbol)
-async def process_price_check(message:Message,state:FSMContext):
+async def process_price_check(message:Message,state:FSMContext,http_session:aiohttp.ClientSession):
     symbol=message.html_text.upper().strip()
-    price= await get_crypto_price(symbol=symbol)
+    price= await get_crypto_price(symbol=symbol,http_session=http_session)
     if price:
         formatted_price = f"{price:,.2f}" if price > 1 else f"{price:.6f}"
         await message.answer(

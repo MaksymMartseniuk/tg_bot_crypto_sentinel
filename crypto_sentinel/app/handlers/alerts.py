@@ -1,3 +1,4 @@
+import aiohttp
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.filters import Command
@@ -55,9 +56,9 @@ async def cancel_add_alert(message: Message, state: FSMContext):
     await message.answer("Alert creation cancelled.", reply_markup=main_menu())
 
 @alerts_router.message(CreateAlert.waiting_for_symbol)
-async def process_alert_symbol(message: Message, state: FSMContext):
+async def process_alert_symbol(message: Message, state: FSMContext, http_session:aiohttp.ClientSession):
     symbol = message.text.upper().strip()
-    current_price = await get_crypto_price(symbol)
+    current_price = await get_crypto_price(symbol=symbol,http_session=http_session)
     if current_price:
         await state.update_data(symbol=symbol, current_price=current_price)
         await message.answer(
