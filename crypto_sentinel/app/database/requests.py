@@ -41,7 +41,7 @@ async def get_active_alerts(session: AsyncSession):
         .where(Alerts.is_active == True)
     )
 
-async def set_user_language(session, tg_id: int, lang_code: str):
+async def set_user_language(session: AsyncSession, tg_id: int, lang_code: str):
     await session.execute(
         update(User)
         .where(User.tg_id == tg_id)
@@ -49,6 +49,6 @@ async def set_user_language(session, tg_id: int, lang_code: str):
     )
     await session.commit()
 
-async def get_user(tg_id: int, session: AsyncSession):
+async def get_user(session: AsyncSession, tg_id: int):
     result = await session.execute(select(User).where(User.tg_id == tg_id))
     return result.scalar_one_or_none()

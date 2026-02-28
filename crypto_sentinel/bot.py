@@ -26,11 +26,14 @@ dp.include_router(setting_router)
 
 async def main():
     logging.basicConfig(level=logging.INFO)
-    dp.update.outer_middleware(DbSessionMiddleware(session_pool=async_session))
-    dp.update.outer_middleware(I18nMiddleware(i18n=i18n))
     await init_db()
     async with aiohttp.ClientSession() as http_session:
-        dp.message.middleware(DbSessionMiddleware(async_session, redis_client, http_session))
+        dp.update.outer_middleware(
+            DbSessionMiddleware(session_pool=async_session,
+                                redis=redis_client,
+                                http_session=http_session
+                                ))
+        dp.update.outer_middleware(I18nMiddleware(i18n=i18n))
         logging.info("Sentinel Crypto Bot started!")
         try:
             await bot.delete_webhook(drop_pending_updates=True)
