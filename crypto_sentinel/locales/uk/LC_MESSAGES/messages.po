@@ -164,7 +164,7 @@ msgstr "❌ Скасувати"
 
 #: app/keyboards/price_kb.py:12
 msgid "Enter symbol, e.g. BTC..."
-msgstr ""
+msgstr "Введіть символ, напр. BTC..."
 
 #: app/keyboards/settings_kb.py:9
 msgid "🇺🇦 Українська"
