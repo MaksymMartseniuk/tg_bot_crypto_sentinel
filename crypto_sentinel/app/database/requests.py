@@ -40,4 +40,15 @@ async def get_active_alerts(session: AsyncSession):
         .options(joinedload(Alerts.user))
         .where(Alerts.is_active == True)
     )
-    return result.all()
+
+async def set_user_language(session: AsyncSession, tg_id: int, lang_code: str):
+    await session.execute(
+        update(User)
+        .where(User.tg_id == tg_id)
+        .values(language=lang_code)
+    )
+    await session.commit()
+
+async def get_user(session: AsyncSession, tg_id: int):
+    result = await session.execute(select(User).where(User.tg_id == tg_id))
+    return result.scalar_one_or_none()
