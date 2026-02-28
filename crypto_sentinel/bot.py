@@ -11,7 +11,7 @@ from app.handlers.prices import price_router
 from app.handlers.alerts import alerts_router
 from app.handlers.settings import setting_router
 from aiogram.utils.i18n import I18n
-from crypto_sentinel.app.middlewares.i18n import I18nMiddleware
+from app.middlewares.i18n import I18nMiddleware
 from app.middlewares.database import DbSessionMiddleware
 from app.database.database import async_session
 
@@ -22,7 +22,7 @@ dp=Dispatcher()
 dp.include_router(user_router)
 dp.include_router(price_router)
 dp.include_router(alerts_router)
-#dp.include_router(setting_router)
+dp.include_router(setting_router)
 
 async def main():
     logging.basicConfig(level=logging.INFO)
