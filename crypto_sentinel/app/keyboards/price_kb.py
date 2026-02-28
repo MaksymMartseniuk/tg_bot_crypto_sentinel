@@ -9,5 +9,5 @@ def get_popular_crypto_kb() -> ReplyKeyboardMarkup:
         builder.button(text=coin)
     builder.button(text=_("❌ Cancel"))
     builder.adjust(3)
-    return builder.as_markup(resize_keyboard=True, one_time_keyboard=True)
+    return builder.as_markup(resize_keyboard=True, one_time_keyboard=True,input_field_placeholder=_("Enter symbol, e.g. BTC..."))
     

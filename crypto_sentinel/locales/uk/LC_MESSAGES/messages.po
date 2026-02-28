@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-28 18:49+0200\n"
+"POT-Creation-Date: 2026-02-28 19:10+0200\n"
 "PO-Revision-Date: 2026-02-28 12:39+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
@@ -71,7 +71,11 @@ msgstr "Для якої монети ви хочете встановити си
 msgid "Alert creation cancelled."
 msgstr "Створення сигналу скасовано."
 
-#: app/handlers/alerts.py:70
+#: app/handlers/alerts.py:72
+msgid "Enter target price (e.g. 55000.5)..."
+msgstr "Введіть ціну сигналу (напр. 55000.5)..."
+
+#: app/handlers/alerts.py:75
 #, python-brace-format
 msgid ""
 "Current price of <b>{symbol}</b> is ${current_price:,.2f}.\n"
@@ -80,20 +84,20 @@ msgstr ""
 "Поточна ціна <b>{symbol}</b> становить ${current_price:,.2f}.\n"
 "На якій ціні встановити сигнал?"
 
-#: app/handlers/alerts.py:77
+#: app/handlers/alerts.py:82
 #, python-brace-format
 msgid "❌ Could not find <b>{symbol}</b>. Please try another symbol:"
 msgstr "❌ Не вдалося знайти <b>{symbol}</b>. Будь ласка, спробуйте інший символ:"
 
-#: app/handlers/alerts.py:94
+#: app/handlers/alerts.py:99
 msgid "Above"
 msgstr "Вище"
 
-#: app/handlers/alerts.py:94
+#: app/handlers/alerts.py:99
 msgid "Below"
 msgstr "Нижче"
 
-#: app/handlers/alerts.py:95
+#: app/handlers/alerts.py:100
 #, python-brace-format
 msgid ""
 "Alert set: <b>{symbol}</b> {emoji}\n"
@@ -104,7 +108,7 @@ msgstr ""
 "Ціль: <code>${target_price:,.2f}</code>\n"
 "(Спрацює, коли ціна піде {direction})"
 
-#: app/handlers/alerts.py:110
+#: app/handlers/alerts.py:115
 msgid "❌ Please enter a valid number (e.g., 55000.50):"
 msgstr "❌ Будь ласка, введіть коректне число (напр., 55000.50):"
 
@@ -157,6 +161,10 @@ msgstr "⚙️ Налаштування"
 #: app/keyboards/price_kb.py:10
 msgid "❌ Cancel"
 msgstr "❌ Скасувати"
+
+#: app/keyboards/price_kb.py:12
+msgid "Enter symbol, e.g. BTC..."
+msgstr ""
 
 #: app/keyboards/settings_kb.py:9
 msgid "🇺🇦 Українська"

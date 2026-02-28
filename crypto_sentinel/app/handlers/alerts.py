@@ -6,7 +6,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.filters import StateFilter
 from aiogram.enums import ParseMode
-from aiogram.types import ReplyKeyboardRemove
+from aiogram.types import ReplyKeyboardRemove,ReplyKeyboardMarkup
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.keyboards.builders import main_menu
 from app.keyboards.price_kb import get_popular_crypto_kb
@@ -70,7 +70,7 @@ async def process_alert_symbol(message: Message, state: FSMContext, http_session
             _("Current price of <b>{symbol}</b> is ${current_price:,.2f}.\n"
             "At what price do you want to set the alert?").format(symbol=symbol, current_price=current_price),
             reply_markup=ReplyKeyboardRemove(),
-            parse_mode=ParseMode.HTML
+            parse_mode=ParseMode.HTML,
         )
         await state.set_state(CreateAlert.waiting_for_price)
     else:

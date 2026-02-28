@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-28 18:49+0200\n"
+"POT-Creation-Date: 2026-02-28 19:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,27 +60,31 @@ msgstr ""
 msgid "Alert creation cancelled."
 msgstr ""
 
-#: app/handlers/alerts.py:70
+#: app/handlers/alerts.py:72
+msgid "Enter target price (e.g. 55000.5)..."
+msgstr ""
+
+#: app/handlers/alerts.py:75
 #, python-brace-format
 msgid ""
 "Current price of <b>{symbol}</b> is ${current_price:,.2f}.\n"
 "At what price do you want to set the alert?"
 msgstr ""
 
-#: app/handlers/alerts.py:77
+#: app/handlers/alerts.py:82
 #, python-brace-format
 msgid "❌ Could not find <b>{symbol}</b>. Please try another symbol:"
 msgstr ""
 
-#: app/handlers/alerts.py:94
+#: app/handlers/alerts.py:99
 msgid "Above"
 msgstr ""
 
-#: app/handlers/alerts.py:94
+#: app/handlers/alerts.py:99
 msgid "Below"
 msgstr ""
 
-#: app/handlers/alerts.py:95
+#: app/handlers/alerts.py:100
 #, python-brace-format
 msgid ""
 "Alert set: <b>{symbol}</b> {emoji}\n"
@@ -88,7 +92,7 @@ msgid ""
 "(Trigger when price goes {direction})"
 msgstr ""
 
-#: app/handlers/alerts.py:110
+#: app/handlers/alerts.py:115
 msgid "❌ Please enter a valid number (e.g., 55000.50):"
 msgstr ""
 
@@ -140,6 +144,10 @@ msgstr ""
 
 #: app/keyboards/price_kb.py:10
 msgid "❌ Cancel"
+msgstr ""
+
+#: app/keyboards/price_kb.py:12
+msgid "Enter symbol, e.g. BTC..."
 msgstr ""
 
 #: app/keyboards/settings_kb.py:9
