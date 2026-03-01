@@ -182,6 +182,11 @@ pybabel update -d locales -i locales/messages.pot
 # Compile to .mo
 pybabel compile -d locales
 ```
+---
+
+## 🛡️ License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 <div align="left"><a href="#top">⬆ Return</a></div>
 
