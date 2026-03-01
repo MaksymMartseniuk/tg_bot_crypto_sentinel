@@ -11,6 +11,7 @@
 <!-- BADGES -->
 <img src="https://img.shields.io/github/last-commit/MaksymMartseniuk/tg_bot_crypto_sentinel?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
 <img src="https://img.shields.io/github/languages/top/MaksymMartseniuk/tg_bot_crypto_sentinel?style=flat&color=0080ff" alt="repo-top-language">
+<img src="https://img.shields.io/github/license/MaksymMartseniuk/tg_bot_crypto_sentinel?style=flat&color=0080ff" alt="license">
 
 <em>Built with the tools and technologies:</em>
 
@@ -36,8 +37,10 @@
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
+    - [Environment Configuration](#environment-configuration)
     - [Usage](#usage)
     - [Testing](#testing)
+    - [Localization](#localization)
 
 ---
 
@@ -110,7 +113,7 @@ Build tg_bot_crypto_sentinel from the source and install dependencies:
 **Using [pip](https://pypi.org/project/pip/):**
 
 ```sh
-❯ pip install -r crypto_sentinel/requirements.txt
+❯ pip install -r requirements.txt
 ```
 4. **Setup environment variables:**
 
@@ -120,6 +123,24 @@ Build tg_bot_crypto_sentinel from the source and install dependencies:
 ```sh
 ❯ docker-compose up -d --build
 ```
+
+### Environment Configuration
+
+Create a `.env` file in the root directory using the template below:
+```env
+# Telegram Bot Configuration
+BOT_TOKEN=your_telegram_bot_token
+
+# Database Configuration
+DATABASE=postgresql+asyncpg://user:password@localhost:5432/db_name
+
+# Redis Configuration
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_DB=0
+```
+
+
 
 ### Usage
 
@@ -133,25 +154,34 @@ docker run -it {image_name}
 **Using [pip](https://pypi.org/project/pip/):**
 
 ```sh
-python {entrypoint}
+python bot.py
 ```
 
 ### Testing
 
-Tg_bot_crypto_sentinel uses the {__test_framework__} test framework. Run the test suite with:
+Tg_bot_crypto_sentinel uses the pytest test framework. Run the test suite with:
 
 **Using [docker](https://www.docker.com/):**
 
 ```sh
-echo 'INSERT-TEST-COMMAND-HERE'
-```
-**Using [pip](https://pypi.org/project/pip/):**
-
-```sh
-pytest
+pytest tests/
 ```
 
 ---
+
+### Localization
+
+Update translations on your development machine:
+```sh
+# Extract new strings
+pybabel extract . -o locales/messages.pot
+
+# Update .po files
+pybabel update -d locales -i locales/messages.pot
+
+# Compile to .mo
+pybabel compile -d locales
+```
 
 <div align="left"><a href="#top">⬆ Return</a></div>
 
