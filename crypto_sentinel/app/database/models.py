@@ -12,9 +12,22 @@ class User(Base):
     id:Mapped[int]=mapped_column(primary_key=True)
     tg_id: Mapped[int] = mapped_column(BigInteger, unique=True, nullable=False,index=True)
     username:Mapped[str]=mapped_column(String(32), nullable=True)
+    first_name:Mapped[str]=mapped_column(String(32), nullable=True)
+    last_name:Mapped[str]=mapped_column(String(32), nullable=True)
     language:Mapped[str]=mapped_column(String(2), default="en",server_default="en")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     alerts:Mapped[List["Alerts"]]=relationship(back_populates="user", cascade="all, delete-orphan")
+
+    @property
+    def full_name(self) -> str:
+        """Returns the user's username if available, otherwise their full name or tg_id."""
+        if self.username:
+            return f"@{self.username}"
+        
+        name_parts = [self.first_name, self.last_name]
+        full_name = " ".join(filter(None, name_parts))
+        
+        return full_name if full_name else f"User {self.tg_id}"
 
 class Alerts(Base):
     __tablename__= "alerts"
