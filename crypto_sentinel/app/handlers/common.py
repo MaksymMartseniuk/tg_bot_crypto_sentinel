@@ -11,10 +11,19 @@ async def process_language_choice(callback: CallbackQuery, session:AsyncSession,
     lang, source, lang_code = callback.data.split(":")
     confirm_text = await change_user_language(session, callback.from_user.id, lang_code, i18n)
     await callback.message.edit_text(confirm_text)
+    user = callback.from_user
+    if user.username:
+        display_name = f"@{user.username}"
+    else:
+        name_parts = [user.first_name, user.last_name]
+        display_name = " ".join(filter(None, name_parts))
+
+        if not display_name:
+            display_name = f"User {user.id}"
 
     if source == "start":
         await callback.message.answer(
-            _("Welcome! How can I help you today?"),
+            _("Welcome {name}! How can I help you today?").format(name=display_name),
             reply_markup=main_menu()
         )
     else:

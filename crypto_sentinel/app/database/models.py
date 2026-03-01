@@ -18,17 +18,6 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     alerts:Mapped[List["Alerts"]]=relationship(back_populates="user", cascade="all, delete-orphan")
 
-    @property
-    def full_name(self) -> str:
-        """Returns the user's username if available, otherwise their full name or tg_id."""
-        if self.username:
-            return f"@{self.username}"
-        
-        name_parts = [self.first_name, self.last_name]
-        full_name = " ".join(filter(None, name_parts))
-        
-        return full_name if full_name else f"User {self.tg_id}"
-
 class Alerts(Base):
     __tablename__= "alerts"
 
